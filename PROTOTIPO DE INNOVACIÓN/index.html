@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOMSAPAS Los Cabos - Prototipo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        oomsapas: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7', 
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        },
+                        gob: {
+                            guinda: '#621132', 
+                            oro: '#9D8D5F'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg-image {
+            background-image: linear-gradient(rgba(12, 74, 110, 0.75), rgba(12, 74, 110, 0.9)), url('https://images.unsplash.com/photo-1544211153-6058e442523b?auto=format&fit=crop&q=80&w=1600');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .img-container {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            background-color: #e2e8f0;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .img-container:hover img {
+            transform: scale(1.05);
+        }
+
+        iframe {
+            border-radius: 1rem;
+        }
+
+        /* Estilo para botones desactivados */
+        .btn-disabled {
+            cursor: default !important;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased">
+
+    <div class="bg-gob-guinda text-white text-[10px] sm:text-xs py-2 px-4 font-medium flex justify-between items-center relative z-[60]">
+        <span class="tracking-wide">XIV AYUNTAMIENTO DE LOS CABOS - BAJA CALIFORNIA SUR (PROTOTIPO)</span>
+        <div class="flex gap-4">
+            <a href="javascript:void(0)" class="btn-disabled uppercase font-bold border-b border-transparent">Transparencia PDE</a>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-md" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="#" class="flex items-center flex-shrink-0">
+                    <div class="h-12 w-12 bg-oomsapas-600 rounded-lg flex items-center justify-center text-white shadow-lg">
+                        <i data-lucide="droplets" class="h-8 w-8"></i>
+                    </div>
+                    <div class="ml-3 flex flex-col">
+                        <span class="font-extrabold text-xl text-oomsapas-900 leading-none">OOMSAPAS</span>
+                        <span class="text-[10px] font-bold text-gob-oro tracking-[0.2em] uppercase">Los Cabos</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="javascript:void(0)" class="btn-disabled text-gray-700 font-bold text-xs uppercase tracking-wider">Servicios</a>
+                    <a href="javascript:void(0)" class="btn-disabled text-gray-700 font-bold text-xs uppercase tracking-wider">Tandeos</a>
+                    <a href="javascript:void(0)" class="btn-disabled text-gray-700 font-bold text-xs uppercase tracking-wider">Cultura del Agua</a>
+                    <a href="javascript:void(0)" class="btn-disabled text-gray-700 font-bold text-xs uppercase tracking-wider text-red-600">Reportes</a>
+                    <a href="javascript:void(0)" class="btn-disabled bg-oomsapas-600 text-white px-6 py-3 rounded-full font-bold shadow-lg flex items-center gap-2 text-xs uppercase tracking-widest">
+                        <i data-lucide="credit-card" class="w-4 h-4"></i>
+                        Pago en Línea
+                    </a>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600 p-2 focus:outline-none">
+                        <i data-lucide="menu" class="h-7 w-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-2xl">
+            <div class="px-4 py-8 space-y-6">
+                <a href="javascript:void(0)" class="btn-disabled block text-lg font-bold text-gray-800 uppercase tracking-wide">Servicios</a>
+                <a href="javascript:void(0)" class="btn-disabled block text-lg font-bold text-gray-800 uppercase tracking-wide">Tandeos</a>
+                <a href="javascript:void(0)" class="btn-disabled block text-lg font-bold text-gray-800 uppercase tracking-wide">Cultura del Agua</a>
+                <a href="javascript:void(0)" class="btn-disabled block text-lg font-bold text-red-600 uppercase tracking-wide">Reportes</a>
+                <a href="javascript:void(0)" class="btn-disabled block w-full text-center bg-oomsapas-600 text-white py-4 rounded-xl font-black tracking-widest uppercase">PAGO EN LÍNEA</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-bg-image relative py-24 lg:py-36 flex items-center min-h-[85vh]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center lg:text-left text-white">
+            <div class="max-w-3xl">
+                <div class="inline-block bg-gob-oro/20 backdrop-blur-sm border border-gob-oro/30 px-4 py-1.5 rounded-full mb-6 text-gob-oro font-bold text-sm tracking-widest uppercase">
+                    Servicio Público Municipal
+                </div>
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight mb-8 drop-shadow-2xl">
+                    Agua y Saneamiento <br><span class="text-oomsapas-50 italic font-light">para Los Cabos</span>.
+                </h1>
+                <p class="text-xl sm:text-2xl mb-12 font-medium opacity-95 leading-relaxed max-w-2xl">
+                    Suministro eficiente, alcantarillado moderno y atención ciudadana de calidad para todo el municipio.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+                    <a href="javascript:void(0)" class="btn-disabled bg-white text-oomsapas-900 px-10 py-5 rounded-xl font-black text-lg shadow-2xl">
+                        Consultar Recibo
+                    </a>
+                    <a href="javascript:void(0)" class="btn-disabled bg-oomsapas-600/40 backdrop-blur-md border border-white/40 px-10 py-5 rounded-xl font-black text-lg">
+                        Reportar Fuga
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-oomsapas-900 mb-4 uppercase tracking-tighter">Nuestros Servicios</h2>
+                <div class="w-24 h-1.5 bg-gob-oro mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="p-10 rounded-3xl bg-gray-50 border border-gray-100 group relative overflow-hidden">
+                    <div class="w-16 h-16 bg-oomsapas-100 text-oomsapas-600 rounded-2xl flex items-center justify-center mb-8 transition-colors duration-500">
+                        <i data-lucide="droplet" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-gray-900">Agua Potable</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">Monitoreo constante del suministro y calidad del agua en todas las delegaciones del municipio.</p>
+                    <a href="javascript:void(0)" class="btn-disabled text-oomsapas-600 font-bold flex items-center gap-2">
+                        Conoce más <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+                <div class="p-10 rounded-3xl bg-gray-50 border border-gray-100 group relative overflow-hidden">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-8 transition-colors duration-500">
+                        <i data-lucide="utility-pole" class="w-10 h-10 rotate-90"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-gray-900">Alcantarillado</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">Mantenimiento preventivo y correctivo de la red de drenaje sanitario municipal los 365 días.</p>
+                    <a href="javascript:void(0)" class="btn-disabled text-blue-600 font-bold flex items-center gap-2">
+                        Conoce más <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+                <div class="p-10 rounded-3xl bg-gray-50 border border-gray-100 group relative overflow-hidden">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mb-8 transition-colors duration-500">
+                        <i data-lucide="refresh-cw" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4 text-gray-900">Saneamiento</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">Tratamiento especializado de aguas residuales para un municipio sustentable y limpio.</p>
+                    <a href="javascript:void(0)" class="btn-disabled text-green-600 font-bold flex items-center gap-2">
+                        Conoce más <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tandeos" class="py-24 bg-oomsapas-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-4xl font-black mb-8 italic uppercase tracking-tight leading-none">
+                        Programación <br>de <span class="text-oomsapas-500">Tandeos y Pipas</span>
+                    </h2>
+                    <p class="text-xl text-gray-300 mb-10 leading-relaxed font-light">
+                        Consulta los horarios de distribución de agua potable por colonia para optimizar el almacenamiento en tu hogar o negocio.
+                    </p>
+                    <div class="flex flex-wrap gap-6">
+                        <a href="javascript:void(0)" class="btn-disabled inline-flex items-center gap-3 bg-oomsapas-600 px-10 py-4 rounded-xl font-black shadow-2xl uppercase tracking-widest text-sm">
+                            <i data-lucide="facebook"></i> Ver Calendario Oficial
+                        </a>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="img-container border-4 border-white/10">
+                        <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&q=80&w=1000" alt="Pipa de Agua OOMSAPAS" onerror="this.src='https://placehold.co/1000x800/e2e8f0/0c4a6e?text=Imagen+de+Pipa'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="infraestructura" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1000" alt="Obras de Infraestructura OOMSAPAS" onerror="this.src='https://placehold.co/1000x800/e2e8f0/0c4a6e?text=Imagen+de+Obra'">
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-4xl font-black text-oomsapas-900 mb-8 italic uppercase leading-none">Mejora de <br>Infraestructura</h2>
+                    <p class="text-gray-600 mb-10 leading-relaxed text-xl font-light">
+                        Mantenemos y modernizamos la red de tuberías de Los Cabos para asegurar que el agua llegue a cada hogar con la presión y calidad necesarias.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-5 items-start">
+                            <div class="w-14 h-14 bg-oomsapas-50 text-oomsapas-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                                <i data-lucide="wrench"></i>
+                            </div>
+                            <div>
+                                <span class="block font-black text-gray-900 text-lg uppercase">Mantenimiento Preventivo</span>
+                                <p class="text-gray-500">Operación continua para evitar rupturas y fugas mayores.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 items-start">
+                            <div class="w-14 h-14 bg-oomsapas-50 text-oomsapas-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                                <i data-lucide="trending-up"></i>
+                            </div>
+                            <div>
+                                <span class="block font-black text-gray-900 text-lg uppercase">Nuevas Conexiones</span>
+                                <p class="text-gray-500">Ampliación de cobertura en zonas de crecimiento urbano.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reportes" class="py-24 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-gray-900 mb-4 uppercase tracking-tighter">Atención Ciudadana</h2>
+                <p class="text-gray-600 text-xl font-light">Localiza nuestras oficinas y utiliza los canales oficiales de reporte.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div class="space-y-8">
+                    <div class="bg-white p-10 rounded-3xl shadow-2xl border-t-8 border-oomsapas-600">
+                        <div class="flex items-center gap-5 mb-6">
+                            <div class="p-4 bg-oomsapas-50 rounded-2xl text-oomsapas-600">
+                                <i data-lucide="file-text" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="font-black text-2xl text-gray-900 uppercase">Reporte en Línea</h4>
+                        </div>
+                        <p class="text-lg text-gray-600 mb-10 leading-relaxed font-light">
+                            Utiliza el portal oficial para reportar quejas, dudas o fugas de manera formal ante el organismo operador. Tu reporte genera un folio de seguimiento.
+                        </p>
+                        <a href="javascript:void(0)" class="btn-disabled block text-center bg-oomsapas-600 text-white py-5 rounded-2xl font-black shadow-xl text-lg uppercase tracking-widest">
+                            Reporta tu queja o duda
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="bg-white p-8 rounded-3xl shadow-xl border-b-8 border-red-600">
+                            <i data-lucide="phone" class="text-red-600 mb-4 w-8 h-8"></i>
+                            <span class="block text-xs font-black text-gray-400 uppercase tracking-widest">San José del Cabo</span>
+                            <div class="text-xl font-black text-gray-900 mt-1 italic">624 355 4803</div>
+                        </div>
+                        <div class="bg-white p-8 rounded-3xl shadow-xl border-b-8 border-green-600">
+                            <i data-lucide="message-circle" class="text-green-600 mb-4 w-8 h-8"></i>
+                            <span class="block text-xs font-black text-gray-400 uppercase tracking-widest">Cabo San Lucas</span>
+                            <div class="text-xl font-black text-gray-900 mt-1 italic">624 108 16 19</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <div class="absolute -top-4 -left-4 bg-oomsapas-600 text-white px-6 py-3 rounded-xl font-black z-20 shadow-xl uppercase tracking-tighter text-sm italic">
+                        Gerencia Cabo San Lucas
+                    </div>
+                    <div class="h-full min-h-[450px] shadow-2xl rounded-3xl overflow-hidden border-8 border-white relative z-10">
+                        <!-- El mapa de Google Maps permanece FUNCIONAL -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.2758273678076!2d-109.9238318!3d22.8847849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86af4af2762a4921%3A0xc64402685040e944!2sOOMSAPAS%20Cabo%20San%20Lucas!5e0!3m2!1ses!2smx!4v1710000000000!5m2!1ses!2smx" 
+                            class="w-full h-full border-0" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <a href="javascript:void(0)" class="btn-disabled text-oomsapas-600 font-bold flex items-center justify-center gap-2">
+                             <i data-lucide="map-pin" class="w-4 h-4"></i> Ver todas las ubicaciones oficiales
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center mb-10">
+                <i data-lucide="droplets" class="text-oomsapas-500 h-12 w-12"></i>
+                <span class="ml-4 font-black text-4xl tracking-tighter uppercase italic">OOMSAPAS</span>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-8 mb-16">
+                <a href="javascript:void(0)" class="btn-disabled p-4 bg-white/5 rounded-2xl" title="Facebook Oficial">
+                    <i data-lucide="facebook" class="w-7 h-7"></i>
+                </a>
+                <a href="javascript:void(0)" class="btn-disabled p-4 bg-white/5 rounded-2xl" title="Instagram Oficial">
+                    <i data-lucide="instagram" class="w-7 h-7"></i>
+                </a>
+                <a href="javascript:void(0)" class="btn-disabled p-4 bg-white/5 rounded-2xl" title="X (Twitter) Oficial">
+                    <i data-lucide="twitter" class="w-7 h-7"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16 text-sm font-bold uppercase tracking-widest text-gray-500 max-w-4xl mx-auto">
+                <a href="javascript:void(0)" class="btn-disabled border-b border-transparent pb-1">Aviso de Privacidad</a>
+                <a href="javascript:void(0)" class="btn-disabled border-b border-transparent pb-1">Transparencia PDE</a>
+                <a href="javascript:void(0)" class="btn-disabled border-b border-transparent pb-1">Cultura del Agua</a>
+            </div>
+
+            <div class="border-t border-gray-800 pt-10 text-[10px] text-gray-600 uppercase tracking-[0.3em] font-black">
+                <p>© 2026 XIV AYUNTAMIENTO DE LOS CABOS | DIRECCIÓN DE COMUNICACIÓN SOCIAL | OOMSAPAS LOS CABOS (PROTOTIPO)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.onclick = () => mobileMenu.classList.toggle('hidden');
+        
+        window.onscroll = () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-xl', 'py-1');
+            } else {
+                navbar.classList.remove('shadow-xl', 'py-1');
+            }
+        };
+    </script>
+    
+    <!-- El Chatbot permanece FUNCIONAL -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/03/08/00/20260308005558-ZXVZTLZ1.js" defer></script>
+</body>
+</html>
